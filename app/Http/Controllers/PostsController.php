@@ -4,18 +4,15 @@
 namespace App\Http\Controllers;
 
 
+use Illuminate\Support\Facades\DB;
+
 class PostsController
 {
-    public function show($post){
-    $posts = [
-        "first-post"  => 'This is my first post',
-        "second-post" => 'This is my second post',
-        ];
-    if (!array_key_exists($post, $posts)){
-        abort(404, 'This Page doesnt exist');
-    }
+    public function show($slug){
+    $post = DB::table('posts')->where('slug', $slug)->first();
+
     return view('post',[
-        'post' =>$posts[$post]
+        'post' =>$post
     ]);
     }
 }
