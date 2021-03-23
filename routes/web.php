@@ -18,8 +18,21 @@ Route::get('/', function () {
 });
 
 Route::get('test', function () {
-    $name = request('name');
     return view('test',[
-        'name' =>$name
+        'name' => request('name')
+    ]);
+});
+
+Route::get('post/{post}',function ($post){
+    $posts = [
+        "first-post"  => 'This is my first post',
+        "second-post" => 'This is my second post',
+        ];
+
+    if (!array_key_exists($post, $posts)){
+        abort(404, 'This Page doesnt exist');
+    }
+    return view('post',[
+        'post' =>$posts[$post]
     ]);
 });
