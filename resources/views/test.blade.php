@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1>Test Complete!</h1>
+<h2>name from routes {{$name}}</h2>
 </body>
 </html>
